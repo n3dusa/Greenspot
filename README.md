@@ -35,7 +35,7 @@ Database:
   - vendor has foreing key conncetion to product_information.
   - sales, product_information and items have foreing key to products.
   - sales has foreing key connection to orders so we can compere.
-  - items has foreing key conneciton to products.
+  - items has foreing key conneciton to products. 
 
     
   
