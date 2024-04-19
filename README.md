@@ -1,41 +1,19 @@
 Summary:
 
-I made This Database using MySQL workbench. I started this project by looking at the given data of greenspot
-and I manualla organized and typed everything to exel so I could learn about the data and better organize it.
-this was very helpful when making tables and columns and organizing data.
-I also used Microsoft Word to write down ideas how to structure this database I wrote how tables and columns should be on database
-after that I started working on the actual project creating query ''Greenspot'' I created tables each one with unique primary key and columns.
-Then I filled columns with data and after that I created foreing keys for the tables to connect them each table has some form of connecting with foreing key.
+I utilized MySQL Workbench to develop a comprehensive database solution for greenspot, commencing with a detailed examination of the provided data. Manually organizing the data in Excel enabled a deeper understanding and facilitated efficient structuring of tables and columns. Microsoft Word was employed to meticulously outline the database's architecture, ensuring clarity in the design process.
 
-Solution:
-My solution for this problem was first of all the organize the data little bit so it was easier to work with
-Then I planned how I should structure my query so I created 7 tables I wasn't quite so sure if my approach was correct
-but I made sure that the data was easy to find, I made sure that all data was spread in tables and that tables share same data.
-so it's easier to use join fuction but it's still easy to find right data from this query.
+The project progressed with the creation of seven tables, each featuring a unique primary key and interconnected via foreign keys to establish relational integrity. Despite initial uncertainty regarding the approach, emphasis was placed on ensuring data accessibility and coherence across tables, simplifying the use of join functions while facilitating efficient data retrieval.
 
-Testing: 
-first of all I tested basic funtions if like select * table.
-I also used JOIN making sure that if table can join with other tables when needed. 
-I made sure that database would function in the basic ways. 
+Thorough testing, including basic functions and join operations, validated the database's functionality, ensuring reliability in essential operations. The constructed database comprises seven key tables: Products, Product_information, Vendor, Customer, Items, Sales, and Orders, each serving a distinct purpose in managing greenspot's data effectively.
 
-Database:
+The foreign key relationships were meticulously established to maintain data consistency and facilitate seamless data retrieval across interconnected tables. Notably, Orders are linked to Customers, Vendors to Product_information, and Sales to both Orders and Products, ensuring comprehensive data management and analysis capabilities.
 
-- Database is construscted of 7 tables, Products, Product_information, vendor, costumer, items, sales and orders.
-- vendor is just to seperate vendors.
-- Items table is the specify what items and what is their item type.
-- Costumer table has information of costumers order number.
-- Products table has information that costumer needs to know.
-- product_information has all the data that is storing related like it's type location and how much is cost to buy from vendor
-- orders table has all data needed to know when product has been ordered.
-- Sales tells us how much product has been bought and product number
+In summary, the database solution offers a structured and scalable framework for greenspot's data management needs, enhancing efficiency and facilitating informed decision-making through organized and interconnected data structures.
 
-  Foreing key relationship:
 
-  - Orders have foreing key connection to costumers.
-  - vendor has foreing key conncetion to product_information.
-  - sales, product_information and items have foreing key to products.
-  - sales has foreing key connection to orders so we can compere.
-  - items has foreing key conneciton to products. 
+
+
+
 
     
   
