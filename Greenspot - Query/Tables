@@ -1,0 +1,168 @@
+-- Table structure for table `customer`
+DROP TABLE IF EXISTS `customer`;
+CREATE TABLE `customer` (
+  `CustomerID` int NOT NULL AUTO_INCREMENT,
+  `cust` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`CustomerID`)
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- Dumping data for table `customer`
+INSERT INTO `customer` VALUES (1,NULL),(2,'198765'),(3,NULL),(4,'202900'),(5,NULL),(6,'169777'),(7,'198765'),(8,NULL),(9,NULL),(10,NULL),(11,'277177'),(12,NULL),(13,'111000'),(14,NULL),(15,'111000'),(16,NULL),(17,'198765'),(18,'100988'),(19,'202900'),(20,NULL),(21,'111000');
+
+
+
+
+
+
+-- Table structure for table `items`
+DROP TABLE IF EXISTS `items`;
+CREATE TABLE `items` (
+  `ItemID` int NOT NULL,
+  `description` varchar(45) DEFAULT NULL,
+  `item_type` varchar(45) DEFAULT NULL,
+  `ProductID` int DEFAULT NULL,
+  PRIMARY KEY (`ItemID`),
+  KEY `fk_items` (`ProductID`),
+  CONSTRAINT `fk_items` FOREIGN KEY (`ProductID`) REFERENCES `products` (`ProductID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- Dumping data for table `items`
+INSERT INTO `items` VALUES (1,'Bennet farm free-range eggs','Dairy',NULL),(2,'Ruby,s Kale','Produce',NULL),(3,'Freshness white beans','Canned',NULL),(4,'Freshness Green beans','Canned',NULL),(5,'Freshness Wax beans','Canned',NULL),(6,'Ruby,s organic Kale','Produce',NULL);
+
+
+
+
+
+
+
+--
+-- Table structure for table `orders`
+--
+
+DROP TABLE IF EXISTS `orders`;
+CREATE TABLE `orders` (
+  `OrdersID` int NOT NULL,
+  `item_num` int DEFAULT NULL,
+  `description` varchar(45) DEFAULT NULL,
+  `price` decimal(10,2) DEFAULT NULL,
+  `date_sold` date DEFAULT NULL,
+  `cust` int DEFAULT NULL,
+  `quantity` int DEFAULT NULL,
+  `CustID` int DEFAULT NULL,
+  PRIMARY KEY (`OrdersID`),
+  KEY `fk_costumer` (`CustID`),
+  CONSTRAINT `fk_costumer` FOREIGN KEY (`CustID`) REFERENCES `customer` (`CustomerID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `orders`
+--
+
+LOCK TABLES `orders` WRITE;
+/*!40000 ALTER TABLE `orders` DISABLE KEYS */;
+INSERT INTO `orders` VALUES (1,1000,'Bennet farm free-range eggs',NULL,NULL,NULL,25,NULL),(2,1000,'Bennet farm free-range eggs',5.49,'2022-02-02',198765,2,NULL),(3,2000,'Ruby,s Kale',3.99,'2022-02-02',NULL,2,NULL),(4,1100,'Freshness White beans',1.49,'2022-02-02',202900,2,NULL),(5,1100,'Freshness White beans',NULL,NULL,NULL,40,NULL),(6,1000,'Bennet farm free-range eggs',5.99,'2022-02-04',169777,2,NULL),(7,1100,'Freshness White beans',1.49,'2022-02-02',198765,8,NULL),(8,1222,'Freshness Green beans',NULL,NULL,NULL,40,NULL),(9,1223,'Freshness Green beans',NULL,NULL,NULL,10,NULL),(10,1224,'Freshness Wax beans',NULL,NULL,NULL,30,NULL),(11,1000,'Bennet farm free-range eggs',5.49,'2022-02-11',277177,4,NULL),(12,1100,'Freshness White beans',1.49,'2022-02-11',NULL,4,NULL),(13,1222,'Freshness Green beans',1.29,'2022-02-12',111000,12,NULL),(14,1224,'Freshness Wax beans',1.55,'2022-02-12',NULL,8,NULL),(15,2000,'Ruby,s Kale',NULL,NULL,111000,2,NULL),(16,2001,'Ruby,s Organic Kale',NULL,NULL,NULL,20,NULL),(17,1223,'Freshness Green beans',3.49,'2022-02-13',198765,5,NULL),(18,2001,'Ruby,s Organic Kale',6.99,'2022-02-13',100988,1,NULL),(19,2001,'Ruby,s Organic Kale',6.99,'2022-02-14
+
+
+
+
+
+
+
+
+-- Table structure for table `product_information`
+DROP TABLE IF EXISTS `product_information`;
+CREATE TABLE `product_information` (
+  `ProductinfoID` int NOT NULL,
+  `item_num` int DEFAULT NULL,
+  `description` varchar(45) DEFAULT NULL,
+  `quantity_on_hand` int DEFAULT NULL,
+  `cost` decimal(10,2) DEFAULT NULL,
+  `purchase_date` date DEFAULT NULL,
+  `vendor` varchar(255) DEFAULT NULL,
+  `item_type` varchar(45) DEFAULT NULL,
+  `location` varchar(45) DEFAULT NULL,
+  `unit` varchar(45) DEFAULT NULL,
+  `ProductID` int DEFAULT NULL,
+  PRIMARY KEY (`ProductinfoID`),
+  KEY `fk_productin` (`ProductID`),
+  CONSTRAINT `fk_productin` FOREIGN KEY (`ProductID`) REFERENCES `products` (`ProductID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- Dumping data for table `product_information`
+LOCK TABLES `product_information` WRITE;
+INSERT INTO `product_information` VALUES (1,1000,'Bennet farm free-range eggs',29,2.35,'2022-02-01','Bennet farms, Rt. 17 Evensville, IL 55446','Dairy','D12','dozen',NULL),(2,1000,'Bennet farm free-range eggs',27,5.49,'2022-02-02',NULL,'Dairy','D12','dozen',NULL),(3,2000,'Ruby,s Kale',3,3.99,'2022-02-02',NULL,'Produce','P12','bunch',NULL),(4,1100,'Freshness White beans',13,1.49,'2022-02-02',NULL,'Canned','A2','12_oz_can',NULL),(5,1100,'Freshness White beans',53,0.69,'2022-02-02','Freshness, Inc., 202 E. Maple St., St. Joseph, Mo 45678','Canned','A2','12_oz_can',NULL),(6,1000,'Bennet farm free-range eggs',25,5.99,'2022-02-04',NULL,'Dairy','D12','dozen',NULL),(7,1100,'Freshness White beans',45,1.49,'2022-02-07',NULL,'Canned','A2','12_oz_can',NULL),(8,1222,'Freshness Green beans',59,0.59,'2022-02-10','Freshness, Inc., 202 E. Maple St., St. Joseph, Mo 45678','Canned','A2','12_oz_can',NULL),(9,1223,'Freshness Green beans',12,1.75,'2022-02-10','Freshness, Inc., 202 E. Maple St., St. Joseph, Mo 45678','Canned','A3','36_oz_can',NULL),(10,1224,'Freshness Wax beans',31,0.65,'2022-02-10','Freshness, Inc., 202 E. Maple St., St. Joseph, Mo 45678','Canned','A7','12_oz_can',NULL),(11,1000,'Bennet farm free-range eggs',21,5.49,'2022-02-11',NULL,'Dairy','D12','dozen',NULL),(12,1100,'Freshness White beans',41,1.49,'2022-02-11',NULL,'Canned','A2','12_oz_can',NULL),(13,1222,'Freshness Green beans',47,1.29,'2022-02-12',NULL,'Canned','A3','12_oz_can',NULL),(14,1224,'Freshness Wax beans',23,1.55,'2022-02-12',NULL,'Canned','A3','12_oz_can',NULL),(15,2000,'Ruby,s Kale',28,1.29,'2022-02-12','Ruby Redd produce, LLC, 1212 Milam St. kanosha, Al, 34567','Produce','P12','bunch',NULL),(16,2001,'Ruby,s Organic Kale',20,2.19,'2022-02-12','Ruby Redd produce, LLC, 1212 Milam St. kanosha, Al, 34567','Produce','P02','bunch',NULL),(17,1223,'Freshness Green beans',7,3.49,'2022-02-13',NULL,'Canned','A7','36_oz_can',NULL),(18,2001,'Ruby,s Organic Kale',19,6.99,'2022-02-13',NULL,'Produce','PO2','bunch',NULL),(19,2001,'Ruby,s Organic Kale',7,6.99,'2022-02-14',NULL,'Produce','PO2','bunch',NULL),(20,1223,'Freshness Green beans',19,1.80,'2022-02-15','Freshness, Inc., 202 E. Maple St., St. Joseph, Mo 45678','Canned','A7','36_oz_can',NULL),(21,2000,'Ruby,s Kale',7,3.99,'2022-02-15',NULL,'Produce','P12','bunch',NULL);
+UNLOCK TABLES;
+
+
+
+
+
+
+
+-- Table structure for table `products`
+DROP TABLE IF EXISTS `products`;
+CREATE TABLE `products` (
+  `ProductID` int NOT NULL,
+  `description` varchar(255) DEFAULT NULL,
+  `item_type` varchar(255) DEFAULT NULL,
+  `Unit` varchar(255) DEFAULT NULL,
+  `price` decimal(10,2) DEFAULT NULL,
+  `quantity_on_hand` int DEFAULT NULL,
+  PRIMARY KEY (`ProductID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- Dumping data for table `products`
+LOCK TABLES `products` WRITE;
+INSERT INTO `products` VALUES (1,'Bennet farm free-range eggs','Dairy','dozen',NULL,25),(2,'Bennet farm free-range eggs','Dairy','dozen',3.99,2),(3,'Ruby,s Kale','Produce','bunch',4.00,2),(4,'Freshness White beans','Canned','12_oz_can',1.49,2),(5,'Freshness White beans','Canned','12_oz_can',NULL,40),(6,'Bennet farm free-range eggs','Dairy','dozen',6.00,2),(7,'Freshness White beans','Canned','12_oz_can',1.49,8),(8,'Freshness Green beans','Canned','12_oz_can',NULL,40),(9,'Freshness Green beans','Canned','36_oz_can',NULL,10),(10,'Freshness Wax beans','Canned','12_oz_can',NULL,30),(11,'Bennet farm free-range eggs','Dairy','Dozen',5.49,4),(12,'Freshness White beans','Canned','12_oz_can',1.49,4),(13,'Freshness Green beans','Canned','12_oz_can',1.29,12),(14,'Freshness Wax beans','Canned','12_oz_can',1.55,8),(15,'Ruby,s Kale','Produce','bunch',NULL,2),(16,'Ruby,s Organic Kale','Produce','bunch',NULL,20),(17,'Freshness Green beans','Canned','36_oz_can',3.49,5),(18,'Ruby,s Organic Kale','Produce','bunch',6.99,1),(19,'Ruby,s Organic Kale','Produce','bunch',7.00,12),(20,'Freshness Green beans','Canned','36_oz_can',NULL,10),(21,'Ruby,s Kale','Produce','bunch',4.00,2);
+UNLOCK TABLES;
+
+
+
+
+
+
+
+-- Table structure for table `sales`
+DROP TABLE IF EXISTS `sales`;
+CREATE TABLE `sales` (
+  `salesID` int NOT NULL,
+  `item_num` int DEFAULT NULL,
+  `price` decimal(10,2) DEFAULT NULL,
+  `date_sold` date DEFAULT NULL,
+  `quantity` int DEFAULT NULL,
+  `OrdersID` int DEFAULT NULL,
+  `ProductID` int DEFAULT NULL,
+  PRIMARY KEY (`salesID`),
+  KEY `fk_order` (`OrdersID`),
+  KEY `fk_product` (`ProductID`),
+  CONSTRAINT `fk_order` FOREIGN KEY (`OrdersID`) REFERENCES `orders` (`OrdersID`),
+  CONSTRAINT `fk_product` FOREIGN KEY (`ProductID`) REFERENCES `products` (`ProductID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- Dumping data for table `sales`
+LOCK TABLES `sales` WRITE;
+INSERT INTO `sales` VALUES (1,1000,NULL,NULL,25,NULL,NULL),(2,1000,5.49,'2022-02-02',2,NULL,NULL),(3,2000,3.99,'2022-02-02',2,NULL,NULL),(4,1100,1.49,'2022-02-02',2,NULL,NULL),(5,1100,NULL,NULL,40,NULL,NULL),(6,1000,5.99,'2022-02-04',2,NULL,NULL),(7,1100,1.49,'2022-02-07',8,NULL,NULL),(8,1222,NULL,NULL,40,NULL,NULL),(9,1223,NULL,NULL,10,NULL,NULL),(10,1224,NULL,NULL,30,NULL,NULL),(11,1000,5.49,'2022-02-11',4,NULL,NULL),(12,1100,1.49,'2022-02-11',4,NULL,NULL),(13,1222,1.29,'2022-02-12',12,NULL,NULL),(14,1224,1.55,'2022-02-12',8,NULL,NULL),(15,2000,NULL,NULL,2,NULL,NULL),(16,2001,NULL,NULL,20,NULL,NULL),(17,1223,3.49,'2022-02-13',5,NULL,NULL),(18,2001,6.99,'2022-02-13',1,NULL,NULL),(19,2001,6.99,'2022-02-14',12,NULL,NULL),(20,1223,NULL,NULL,10,NULL,NULL),(21,2000,3.99,'2022-02-15',2,NULL,NULL);
+UNLOCK TABLES;
+
+
+
+
+
+
+-- Table structure for table `vendor`
+DROP TABLE IF EXISTS `vendor`;
+CREATE TABLE `vendor` (
+  `vendor_id` varchar(255) NOT NULL,
+  `vendor` varchar(255) DEFAULT NULL,
+  `ProductinfoID` int DEFAULT NULL,
+  PRIMARY KEY (`vendor_id`),
+  KEY `fk_vendor` (`ProductinfoID`),
+  CONSTRAINT `fk_vendor` FOREIGN KEY (`ProductinfoID`) REFERENCES `product_information` (`ProductinfoID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- Dumping data for table `vendor`
+LOCK TABLES `vendor` WRITE;
+INSERT INTO `vendor` VALUES ('1','Bennet farms, Rt. 17 Evensville, IL 55446',NULL),('2','Freshness, Inc., 202 E. Maple St., St. Joseph, Mo 45678',NULL),('3','Ruby Redd produce, LLC, 1212 Milam St. kanosha, Al, 34567',NULL);
+UNLOCK TABLES;
+
